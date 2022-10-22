@@ -1,4 +1,3 @@
-
 import { Model, UpdateQuery } from 'mongoose';
 import IModel from '../interfaces/IModel';
 
