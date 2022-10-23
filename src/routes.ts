@@ -12,5 +12,4 @@ route.post('/cars', (req: Request, res: Response) => carController.create(req, r
 // route.get('/cars', (req: Request, res: Response) => {  
 //   res.status(200).json('message');
 // });
-
 export default route;
