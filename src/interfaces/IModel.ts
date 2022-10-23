@@ -1,9 +1,9 @@
-interface IModel<T> {
-  create(obj: T): Promise<T>;
-  readOne(_id: string): Promise<T | null>;
-  read(): Promise<T[]>;
-  delete(_id: string): Promise<T | null>;
-  update(_id: string, obj: Partial<T>): Promise<T | null>;
+interface IModel<Entity> {
+  create(data: Entity): Promise<Entity>;
+  read(): Promise<Entity[]>;
+  readOne(_id: string): Promise<Entity | null>;
+  update(_id: string, data: Entity): Promise<Entity | null>;
+  delete(_id: string): Promise<Entity | null>;
 }
 
 export default IModel;

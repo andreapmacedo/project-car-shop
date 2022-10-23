@@ -1,23 +1,16 @@
-// import { isValidObjectId } from 'mongoose';
-// import { AppError, ErrorTypes } from '../errors/error';
-
-// import { ErrorTypes } from '../errors/customError';
-import { CarZodSchema, ICar } from '../interfaces/ICar';
-import { VehicleZodSchema } from '../interfaces/IVehicle';
-
 import IService from '../interfaces/IService';
+import ICar, { CarZodSchema } from '../interfaces/ICar';
 import IModel from '../interfaces/IModel';
-// import CarModel from '../models/CarModel';
 
-export default class Car implements IService<ICar> {
-  constructor(private _model: IModel<ICar>) {}
-  
-  create(obj: unknown): Promise<ICar> {
-    const parsedVehicle = VehicleZodSchema.safeParse(obj);
-    const parsedCar = CarZodSchema.safeParse(obj);
-    if (!parsedVehicle.success) throw parsedVehicle.error;
-    if (!parsedCar.success) throw parsedCar.error;
-    const parsed = { ...parsedVehicle.data, ...parsedCar.data };
-    return this._model.create(parsed);
+export default class CarService implements IService<ICar> {
+  private _car: IModel<ICar>;
+  constructor(model: IModel<ICar>) {
+    this._car = model;
+  }
+ 
+  public async create(obj: unknown): Promise<ICar> {
+    const parsed = CarZodSchema.safeParse(obj);
+    if (!parsed.success) throw parsed.error;
+    return this._car.create(parsed.data);
   }
 }
