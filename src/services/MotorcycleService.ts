@@ -29,7 +29,7 @@ export default class MotorcycleService implements IService<IMotorcycle> {
     return car;
   }
 
-  async update(_id: string, obj: unknown): Promise<IMotorcycle> {
+  public async update(_id: string, obj: unknown): Promise<IMotorcycle> {
     if (!obj || JSON.stringify(obj) === '{}') {
       throw new ShowError(400, 'EmptyBody');
     }

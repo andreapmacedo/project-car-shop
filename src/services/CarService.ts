@@ -28,7 +28,8 @@ export default class CarService implements IService<ICar> {
     if (!car) throw new ShowError(404, 'NotFound');
     return car;
   }
-  async update(_id: string, obj: unknown): Promise<ICar> {
+
+  public async update(_id: string, obj: unknown): Promise<ICar> {
     if (!obj || JSON.stringify(obj) === '{}') {
       throw new ShowError(400, 'EmptyBody');
     }

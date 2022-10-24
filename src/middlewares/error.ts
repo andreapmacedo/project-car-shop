@@ -25,7 +25,20 @@ const errorHandler: ErrorRequestHandler = (
   console.error(err);
 
   // return res.status(500).json({ message: 'internal error' });
-  return res.status(500).json({ error: 'internal error' });
+  // return res.status(500).json({ error: 'internal error' });
+  return res.status(400).json({ error: 'internal error' });
 };
 
 export default errorHandler;
+
+// import { ErrorRequestHandler } from 'express';
+
+// const errorHandler: ErrorRequestHandler = (error, _req, res, _next) => {
+//   if (error.status) {
+//     return res.status(error.status).json({ error: error.message });
+//   }
+
+//   return res.status(500).json({ error: 'Server error' });
+// };
+
+// export default errorHandler;
