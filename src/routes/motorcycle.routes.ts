@@ -17,4 +17,7 @@ route.get('/motorcycles', (req: Request, res: Response) =>
 route.get('/motorcycles/:id', (req: Request, res: Response) =>
   motorcycleController.readOne(req, res));
 
+route.put('/motorcycles/:id', (req: Request, res: Response) =>
+  motorcycleController.update(req, res));
+
 export default route;

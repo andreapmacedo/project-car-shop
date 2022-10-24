@@ -1,5 +1,5 @@
 import { isValidObjectId } from 'mongoose';
-import { AppError } from '../errors/customError';
+import { ShowError } from '../errors/customError';
 import IService from '../interfaces/IService';
 import { ICar, CarZodSchema } from '../interfaces/ICar';
 import { IModel } from '../interfaces/IModel';
@@ -22,10 +22,22 @@ export default class CarService implements IService<ICar> {
 
   public async readOne(_id: string): Promise<ICar> {
     if (!isValidObjectId(_id)) {
-      throw new AppError(400, 'InvalidId');
+      throw new ShowError(400, 'InvalidId');
     }
     const car = await this._car.readOne(_id);
-    if (!car) throw new AppError(404, 'NotFound');
+    if (!car) throw new ShowError(404, 'NotFound');
     return car;
+  }
+  async update(_id: string, obj: unknown): Promise<ICar> {
+    if (!obj || JSON.stringify(obj) === '{}') {
+      throw new ShowError(400, 'EmptyBody');
+    }
+    if (!isValidObjectId(_id)) {
+      throw new ShowError(400, 'InvalidId');
+    }
+    const car = await this._car.update(_id, obj as Partial<ICar>);
+    if (!car) throw new ShowError(404, 'NotFound');
+    const updatedCar = await this._car.readOne(_id);
+    return updatedCar as ICar;
   }
 }
