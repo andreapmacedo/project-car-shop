@@ -24,9 +24,9 @@ export default class MotorcycleService implements IService<IMotorcycle> {
     if (!isValidObjectId(_id)) {
       throw new ShowError(400, 'InvalidId');
     }
-    const car = await this._motorcycle.readOne(_id);
-    if (!car) throw new ShowError(404, 'NotFound');
-    return car;
+    const motorcycle = await this._motorcycle.readOne(_id);
+    if (!motorcycle) throw new ShowError(404, 'NotFound');
+    return motorcycle;
   }
 
   public async update(_id: string, obj: unknown): Promise<IMotorcycle> {
@@ -36,9 +36,18 @@ export default class MotorcycleService implements IService<IMotorcycle> {
     if (!isValidObjectId(_id)) {
       throw new ShowError(400, 'InvalidId');
     }
-    const car = await this._motorcycle.update(_id, obj as Partial<IMotorcycle>);
-    if (!car) throw new ShowError(404, 'NotFound');
-    const updatedCar = await this._motorcycle.readOne(_id);
-    return updatedCar as IMotorcycle;
+    const motorcycle = await this._motorcycle.update(_id, obj as Partial<IMotorcycle>);
+    if (!motorcycle) throw new ShowError(404, 'NotFound');
+    const updatedmotorcycle = await this._motorcycle.readOne(_id);
+    return updatedmotorcycle as IMotorcycle;
+  }
+  
+  public async delete(_id: string): Promise<IMotorcycle> {
+    if (!isValidObjectId(_id)) {
+      throw new ShowError(400, 'InvalidId');
+    }
+    const motorcycle = await this._motorcycle.delete(_id);
+    if (!motorcycle) throw new ShowError(404, 'NotFound');
+    return motorcycle;
   }
 }

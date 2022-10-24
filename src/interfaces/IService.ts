@@ -3,7 +3,7 @@ interface IService<T> {
   readOne(_id: string): Promise<T>;
   read(): Promise<T[]>;
   update(_id: string, obj: unknown): Promise<T>;
-  // delete(_id: string): Promise<T>;
+  delete(_id: string): Promise<T>;
 }
 
 export default IService;

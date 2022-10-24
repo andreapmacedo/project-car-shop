@@ -41,4 +41,13 @@ export default class CarService implements IService<ICar> {
     const updatedCar = await this._car.readOne(_id);
     return updatedCar as ICar;
   }
+
+  public async delete(_id: string): Promise<ICar> {
+    if (!isValidObjectId(_id)) {
+      throw new ShowError(400, 'InvalidId');
+    }
+    const car = await this._car.delete(_id);
+    if (!car) throw new ShowError(404, 'NotFound');
+    return car;
+  }
 }
