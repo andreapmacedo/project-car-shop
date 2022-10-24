@@ -1,8 +1,8 @@
 // import { Router } from 'express';
 import { Router, Request, Response } from 'express';
-import CarController from './controllers/CarController';
-import CarModel from './models/CarModel';
-import CarService from './services/CarService';
+import CarController from '../controllers/CarController';
+import CarModel from '../models/CarModel';
+import CarService from '../services/CarService';
 
 const route: Router = Router();
 

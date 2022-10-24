@@ -1,11 +1,17 @@
 import { z } from 'zod';
-import { IVehicle, VehicleZodSchema } from './IVehicle';
+// import { IVehicle, VehicleZodSchema } from './IVehicle';
+import { VehicleZodSchema } from './IVehicle';
 
 export const CarZodSchema = VehicleZodSchema.extend({
   doorsQty: z.number().int().gte(2).lte(4),
   seatsQty: z.number().int().gte(2).lte(7),
 });
 
+export type ICar = z.infer<typeof CarZodSchema>;
+// para o caso de não usar o extend
+// export type ICar = z.infer<typeof CarZodSchema> & IVehicle;
+
+// Não passa no teste
 // const CarZodSchema = z.object({
 //   _id: z.string().optional(),
 //   model: z.string().min(3),
@@ -16,9 +22,5 @@ export const CarZodSchema = VehicleZodSchema.extend({
 //   doorsQty: z.number().int().gte(2).lte(4),
 //   seatsQty: z.number().int().gte(2).lte(7),
 // });
-
-// type ICar = z.infer<typeof CarZodSchema>;
-export type ICar = z.infer<typeof CarZodSchema> & IVehicle;
-
 // export default ICar;
 // export { CarZodSchema };
