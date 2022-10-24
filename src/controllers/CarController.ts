@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import IService from '../interfaces/IService';
-import ICar from '../interfaces/ICar';
+import { ICar } from '../interfaces/ICar';
 
 class Car {
   constructor(private _service: IService<ICar>) {}
