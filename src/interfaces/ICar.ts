@@ -19,12 +19,9 @@
 
 // type ICar = z.infer<typeof CarZodSchema>;
 
-// export default ICar;
-// export { CarZodSchema };
-
 import { z } from 'zod';
 
-export const CarZodSchema = z.object({
+const CarZodSchema = z.object({
   _id: z.string().optional(),
   model: z.string().min(3),
   year: z.number().int().gte(1900).lte(2022),
@@ -38,3 +35,4 @@ export const CarZodSchema = z.object({
 type ICar = z.infer<typeof CarZodSchema>;
 
 export default ICar;
+export { CarZodSchema };
