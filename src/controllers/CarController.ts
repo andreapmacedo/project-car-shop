@@ -11,6 +11,11 @@ class Car {
     res.status(201).json(result);
   }
 
+  public async read(req: Request, res: Response) {
+    const result = await this._service.read();
+    res.status(200).json(result);
+  }
+
   public async readOne(req: Request, res: Response) {
     const { id } = req.params;
     const result = await this._service.readOne(id);

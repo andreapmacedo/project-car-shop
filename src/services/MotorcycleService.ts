@@ -16,6 +16,10 @@ export default class MotorcycleService implements IService<IMotorcycle> {
     return this._motorcycle.create(parsed.data);
   }
 
+  public read(): Promise<IMotorcycle[]> {
+    return this._motorcycle.read();
+  }
+
   public async readOne(_id: string): Promise<IMotorcycle> {
     if (!isValidObjectId(_id)) {
       throw new AppError(400, 'InvalidId');

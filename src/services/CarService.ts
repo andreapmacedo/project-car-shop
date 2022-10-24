@@ -15,7 +15,11 @@ export default class CarService implements IService<ICar> {
     if (!parsed.success) throw parsed.error;
     return this._car.create(parsed.data);
   }
-  
+
+  public read(): Promise<ICar[]> {
+    return this._car.read();
+  }
+
   public async readOne(_id: string): Promise<ICar> {
     if (!isValidObjectId(_id)) {
       throw new AppError(400, 'InvalidId');
