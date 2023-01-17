@@ -1,8 +1,9 @@
-# :car: Projeto Car Shop
-
 <div align="center" >
 
-  ![cover](./car-shop-01.png)
+# :car:   Projeto Car Shop   :car:
+
+
+![cover](./car-shop-01.png)
 
 </div>
 
